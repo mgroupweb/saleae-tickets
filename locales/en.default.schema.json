@@ -507,6 +507,9 @@
         "name": "Announcement bar"
       }
     },
+    "about-us": {
+      "name": "About us"
+    },
     "apps": {
       "name": "Apps",
       "settings": {
