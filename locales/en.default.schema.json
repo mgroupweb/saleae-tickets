@@ -3144,6 +3144,23 @@
         "name": "Slideshow"
       }
     },
+    "store-locator": {
+      "name": "Location",
+      "blocks_name": "Text block",
+      "blocks": {
+        "heading": {
+          "name": "Title",
+          "settings": {
+            "heading": {
+              "label": "Title"
+            }
+          }
+        }
+      },
+      "presets": {
+        "name": "Location"
+      }
+    },
     "collapsible_content": {
       "name": "Collapsible content",
       "settings": {
