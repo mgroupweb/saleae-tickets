@@ -60,43 +60,45 @@
 {%- endstyle -%}
 
 <div class=" section-{{ section.id }}-padding">
-  <div class="hero-content">
-    <div class="hero-content__media media-container-{{ section.id }} media-container">
-      {%- if section.settings.video_desktop != blank -%}
-        {%- if section.settings.video_mobile != blank -%}
-          {{
-            section.settings.video_mobile
-            | video_tag:
-              autoplay: true,
-              loop: true,
-              muted: true,
-              controls: false,
-              class: 'media-container__video-mobile'
-          }}
-        {%- endif -%}
-        <div class="media-container__video-wrapper">
-          {{
-            section.settings.video_desktop
-            | video_tag:
-              autoplay: true,
-              loop: true,
-              muted: true,
-              controls: false,
-              class: 'media-container_video-desktop'
-          }}
-        </div>
+  {% if section.settings.image_desktop != blank %}
+    <div class="hero-content">
+      <div class="hero-content__media media-container-{{ section.id }} media-container">
+        {%- if section.settings.video_desktop != blank -%}
+          {%- if section.settings.video_mobile != blank -%}
+            {{
+              section.settings.video_mobile
+              | video_tag:
+                autoplay: true,
+                loop: true,
+                muted: true,
+                controls: false,
+                class: 'media-container__video-mobile'
+            }}
+          {%- endif -%}
+          <div class="media-container__video-wrapper">
+            {{
+              section.settings.video_desktop
+              | video_tag:
+                autoplay: true,
+                loop: true,
+                muted: true,
+                controls: false,
+                class: 'media-container_video-desktop'
+            }}
+          </div>
 
-      {%- else -%}
-        {%- if section.settings.image_mobile != blank -%}
-          {% render 'image-banner', image: section.settings.image_mobile, class: 'media-container_image-mobile' %}
+        {%- else -%}
+          {%- if section.settings.image_mobile != blank -%}
+            {% render 'image-banner', image: section.settings.image_mobile, class: 'media-container_image-mobile' %}
+          {%- endif -%}
+          <div class="media-container__image-wrapper">
+            {% render 'image-banner', image: section.settings.image_desktop, class: 'media-container_image-desktop' %}
+          </div>
         {%- endif -%}
-        <div class="media-container__image-wrapper">
-          {% render 'image-banner', image: section.settings.image_desktop, class: 'media-container_image-desktop' %}
-        </div>
-      {%- endif -%}
+      </div>
+      <h1 class="hero-content__title-{{ section.id }} hero-content__title">{{ section.settings.title }}</h1>
     </div>
-    <h1 class="hero-content__title-{{ section.id }} hero-content__title">{{ section.settings.title }}</h1>
-  </div>
+  {% endif %}
 </div>
 
 {% schema %}
@@ -134,16 +136,6 @@
       "content": "t:sections.hero-banner.settings.media_settings.content"
     },
     {
-      "type": "video",
-      "id": "video_desktop",
-      "label": "t:sections.hero-banner.settings.video_desktop.label"
-    },
-    {
-      "type": "video",
-      "id": "video_mobile",
-      "label": "t:sections.hero-banner.settings.video_mobile.label"
-    },
-    {
       "type": "image_picker",
       "id": "image_desktop",
       "label": "t:sections.hero-banner.settings.image_desktop.label"
@@ -152,6 +144,16 @@
       "type": "image_picker",
       "id": "image_mobile",
       "label": "t:sections.hero-banner.settings.image_mobile.label"
+    },
+    {
+      "type": "video",
+      "id": "video_desktop",
+      "label": "t:sections.hero-banner.settings.video_desktop.label"
+    },
+    {
+      "type": "video",
+      "id": "video_mobile",
+      "label": "t:sections.hero-banner.settings.video_mobile.label"
     },
     {
       "type": "select",
