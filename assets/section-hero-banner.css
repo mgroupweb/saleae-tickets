@@ -11,7 +11,7 @@
     width: 100%;
     height: auto;
 }
-.hero-content__title{
+/* .hero-content__title{
     margin: 0;
     font-size: 53px;
     color: #fff;
@@ -23,6 +23,21 @@
 
     @media screen and (max-width: 1249px) {
         font-size: 43px;
+    }
+} */
+
+.hero-content__title h1 {
+    margin: 0;
+    font-size: 25px;
+    color: #fff;
+    font-family: var(--gentona-font);
+
+    @media screen and (min-width: 768px) {
+        font-size: 43px;
+    }
+
+    @media screen and (min-width: 1279px) {
+        font-size: 53px;
     }
 }
 
