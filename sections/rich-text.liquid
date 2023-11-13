@@ -6,38 +6,52 @@
     padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
   }
 
-  @media screen and (min-width: 750px) {
+  @media screen and (min-width: 769px) {
     .section-{{ section.id }}-padding {
       padding-top: {{ section.settings.padding_top }}px;
       padding-bottom: {{ section.settings.padding_bottom }}px;
     }
   }
-
-  .test {
-    font-family: var(--gentona-font);
-  }
 {%- endstyle -%}
 
-<div class="isolate{% unless section.settings.full_width %} page-width{% endunless %}">
-  <div class="rich-text section-{{ section.id }}-padding">
-    {% for block in section.blocks %}
-      {% liquid
-        assign padding_top = block.settings.padding_top
-        assign padding_bottom = block.settings.padding_bottom
-        assign divider = block.settings.divider
-        assign title = block.settings.title
-        assign description = block.settings.description
-        assign button_text = block.settings.button_text
-        assign button_link = block.settings.button_link
-      %}
+<div class="rich-text section-{{ section.id }}-padding">
+  {% for block in section.blocks %}
+    {% liquid
+      assign padding_top = block.settings.padding_top
+      assign padding_bottom = block.settings.padding_bottom
+      assign background_color = block.settings.background_color
+      assign divider = block.settings.divider
+      assign title = block.settings.title
+      assign description = block.settings.description
+      assign button_text = block.settings.button_text
+      assign button_link = block.settings.button_link
+    %}
 
-      <div>
+    <style>
+      .rich-text__block-{{ forloop.index }} {
+        padding-top: {{ padding_top }}px;
+        padding-bottom: {{ padding_bottom }}px;
+        background-color: {{ background_color }};
+
+        {% if divider %}
+          border-bottom: solid 1px #959595;
+        {%- endif -%}
+      }
+    </style>
+
+    <div class="rich-text__block rich-text__block-{{ forloop.index }}">
+      {% if title != blank %}
         {{ title }}
+      {% endif %}
+      {% if description != blank %}
         {{ description }}
-      </div>
-      
-    {% endfor %}
-  </div>
+      {% endif %}
+      {% if button_text != blank %}
+        <a class="custom-button" href="{{ button_link }}">{{ button_text }}</a>
+      {% endif %}
+    </div>
+    
+  {% endfor %}
 </div>
 
 {% schema %}
@@ -77,7 +91,7 @@
   "blocks": [
     {
       "type": "heading",
-      "name": "t:sections.rich-text.blocks.heading.name",
+      "name": "t:sections.rich-text.blocks_name",
       "limit": 3,
       "settings": [
         {
@@ -102,14 +116,14 @@
         },
         {
           "type": "color",
-          "id": "background-color",
-          "label": "Background color",
-          "default": "#000000"
+          "id": "background_color",
+          "label": "t:sections.rich-text.blocks.background.label",
+          "default": "#fff"
         },
         {
           "type": "checkbox",
           "id": "divider",
-          "label": "Divider on/off",
+          "label": "t:sections.rich-text.blocks.divider.label",
           "default": false
         },
         {
@@ -123,6 +137,10 @@
           "id": "description",
           "default": "<p>Description</p>",
           "label": "t:sections.rich-text.blocks.text.settings.text.label"
+        },
+        {
+          "type": "header",
+          "content": "t:sections.rich-text.blocks.buttons.name"
         },
         {
           "type": "text",

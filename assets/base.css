@@ -275,11 +275,11 @@ h5,
 .h3,
 .h4,
 .h5 {
-  font-family: var(--font-heading-family);
+  font-family: var(--gentona-font);
   font-style: var(--font-heading-style);
   font-weight: var(--font-heading-weight);
   letter-spacing: calc(var(--font-heading-scale) * 0.06rem);
-  color: rgb(var(--color-foreground));
+  color: var(--custom-color-headings);
   line-height: calc(1 + 0.3 / max(1, var(--font-heading-scale)));
   word-break: break-word;
 }
@@ -306,37 +306,38 @@ h5,
 
 h1,
 .h1 {
-  font-size: calc(var(--font-heading-scale) * 3rem);
+  font-size: 25px;
+  font-weight: 500;
 }
 
 @media only screen and (min-width: 750px) {
   h1,
   .h1 {
-    font-size: calc(var(--font-heading-scale) * 4rem);
+    font-size: 53px;
   }
 }
 
 h2,
 .h2 {
-  font-size: calc(var(--font-heading-scale) * 2rem);
+  font-size: 21px;
 }
 
 @media only screen and (min-width: 750px) {
   h2,
   .h2 {
-    font-size: calc(var(--font-heading-scale) * 2.4rem);
+    font-size: 42px;
   }
 }
 
 h3,
 .h3 {
-  font-size: calc(var(--font-heading-scale) * 1.7rem);
+  font-size: 18px;
 }
 
 @media only screen and (min-width: 750px) {
   h3,
   .h3 {
-    font-size: calc(var(--font-heading-scale) * 1.8rem);
+    font-size: 36px;
   }
 }
 
@@ -364,6 +365,18 @@ h6,
   color: rgba(var(--color-foreground), 0.75);
   margin-block-start: 1.67em;
   margin-block-end: 1.67em;
+}
+
+p {
+  font-size: 18px;
+  color: var(--custom-color-p);
+}
+
+@media only screen and (min-width: 750px) {
+
+  p {
+    font-size: 25px;
+  }
 }
 
 blockquote {
@@ -3509,5 +3522,26 @@ details-disclosure > details {
 
   .animate--hover-vertical-lift .button:not([disabled]).button--secondary:hover:after {
     --border-offset: 0px; /* Prevent the border from growing on buttons when this effect is on. */
+  }
+}
+
+.custom-button {
+  font-family: var(--gentona-font);
+  display: inline-block;
+  transition: all 0.2s ease-in-out;
+  color: #ffffff;
+  font-size: 18px;
+  font-weight: 500;
+  padding: 25px 35px 27px;
+  letter-spacing: 0.01em;
+  border-radius: 3px;
+  background-image: linear-gradient(to top, #318abe 0%, #3fa3dd 100%);
+  text-decoration: none;
+  margin: 20px 0 0 0;
+}
+
+@media screen and (min-width: 769px) {
+  .custom-button {
+    font-size: 28px;
   }
 }

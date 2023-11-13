@@ -2798,6 +2798,7 @@
     },
     "rich-text": {
       "name": "Rich text",
+      "blocks_name": "Text block",
       "blocks": {
         "heading": {
           "name": "Title",
@@ -2845,7 +2846,7 @@
           }
         },
         "buttons": {
-          "name": "Buttons",
+          "name": "Button",
           "settings": {
             "button": {
               "label": "Button label"
@@ -2874,6 +2875,12 @@
               "label": "Use outline button style"
             }
           }
+        },
+        "background": {
+          "label": "Background color"
+        },
+        "divider": {
+          "label": "Divider on/off"
         }
       },
       "presets": {
