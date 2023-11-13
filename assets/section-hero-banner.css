@@ -1,8 +1,26 @@
-/* .hero-content{
+.hero-content{
     position: relative;
+    display: flex;
+}
+.media-container_image-desktop, .media-container_video-desktop{
+    width: 100%;
+    object-fit: cover;
+    height: 100%;
+}
+.media-container_image-mobile, .media-container__video-mobile{
+    width: 100%;
+    height: auto;
+}
+.hero-content__title{
+    margin: 0;
+    font-size: 53px;
+    color: #fff;
+    @media screen and (max-width: 768px) {
+        font-size: 25px;
+    }
+
+    @media screen and (max-width: 1249px) {
+        font-size: 43px;
+    }
 }
 
-.title-banner{
-    position: absolute;
-
-} */
