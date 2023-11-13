@@ -962,32 +962,6 @@
               "info": "Displays only top-level menu items."
             }
           }
-        },
-        "brand_information": {
-          "name": "Brand information",
-          "settings": {
-            "paragraph": {
-              "content": "This block will display your brand information. [Edit brand information.](\/editor?context=theme&category=brand%20information)"
-            },
-            "header__1": {
-              "content": "Social media icons"
-            },
-            "show_social": {
-              "label": "Show social media icons",
-              "info": "To display your social media accounts, link them in your [theme settings](\/editor?context=theme&category=social%20media)."
-            }
-          }
-        },
-        "text": {
-          "name": "Text",
-          "settings": {
-            "heading": {
-              "label": "Heading"
-            },
-            "subtext": {
-              "label": "Subtext"
-            }
-          }
         }
       },
       "settings": {
