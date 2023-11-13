@@ -2800,10 +2800,10 @@
       "name": "Rich text",
       "blocks": {
         "heading": {
-          "name": "Heading",
+          "name": "Title",
           "settings": {
             "heading": {
-              "label": "Heading"
+              "label": "Title"
             }
           }
         },
@@ -2847,6 +2847,12 @@
         "buttons": {
           "name": "Buttons",
           "settings": {
+            "button": {
+              "label": "Button label"
+            },
+            "button_url": {
+              "label": "Button url"
+            },
             "button_label_1": {
               "label": "First button label",
               "info": "Leave the label blank to hide the button."

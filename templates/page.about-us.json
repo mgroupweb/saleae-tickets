@@ -1,7 +1,7 @@
 {
   "sections": {
     "main": {
-      "type": "hero-banner",
+      "type": "rich-text",
       "settings": {
       }
     }
