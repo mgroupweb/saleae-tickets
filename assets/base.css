@@ -3545,3 +3545,7 @@ details-disclosure > details {
     font-size: 28px;
   }
 }
+
+strong {
+  font-weight: 600;
+}

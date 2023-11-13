@@ -12,18 +12,22 @@
 
 .rich-text__block h1 {
   margin: 0 0 28px;
+  text-align: center;
 }
 
 .rich-text__block h2 {
   margin: 0 0 22px;
+  text-align: center;
 }
 
 .rich-text__block h3 {
   margin: 0 0 16px;
+  text-align: center;
 }
 
 .rich-text__block p {
   margin: 0;
+  text-align: center;
 }
 
 @media screen and (min-width: 769px) {
