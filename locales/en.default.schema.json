@@ -1147,8 +1147,20 @@
     "hero-banner": {
       "name": "Hero banner",
       "settings": {
-        "image_banner": {
-          "label": "Image"
+        "media_settings": {
+          "content": "Media settings"
+        },
+        "video_desktop": {
+          "label": "Video for desktop"
+        },
+        "video_mobile": {
+          "label": "Video for mobile"
+        },
+        "image_desktop": {
+          "label": "Image for desktop"
+        },
+        "image_mobile": {
+          "label": "Image for mobile"
         },
         "image_height": {
           "label": "Banner height",
@@ -1162,8 +1174,35 @@
             "label": "Extra large"
           }
         },
+        "text_settings": {
+          "content": "Text settings"
+        },
         "title": {
           "label": "Title"
+        },
+        "alignment_content_horizontal": {
+          "options__1": {
+            "label": "Left"
+          },
+          "options__2": {
+            "label": "Center"
+          },
+          "options__3": {
+            "label": "Right"
+          },
+          "label": "Desktop content alignment (horizontal)"
+        },
+        "alignment_content_vertical": {
+          "options__1": {
+            "label": "Top"
+          },
+          "options__2": {
+            "label": "Center"
+          },
+          "options__3": {
+            "label": "Bottom"
+          },
+          "label": "Desktop content alignment (vertical)"
         }
       }
     },
