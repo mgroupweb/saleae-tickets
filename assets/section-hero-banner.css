@@ -15,6 +15,8 @@
     margin: 0;
     font-size: 53px;
     color: #fff;
+    font-family: var(--gentona-font);
+
     @media screen and (max-width: 768px) {
         font-size: 25px;
     }
