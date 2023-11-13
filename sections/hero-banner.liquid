@@ -96,7 +96,9 @@
           </div>
         {%- endif -%}
       </div>
-      <h1 class="hero-content__title-{{ section.id }} hero-content__title">{{ section.settings.title }}</h1>
+      <div class="hero-content__title-{{ section.id }} hero-content__title">{{ section.settings.title }}</div>
+
+      {% comment %} <h1 class="hero-content__title-{{ section.id }} hero-content__title">{{ section.settings.title }}</h1> {% endcomment %}
     </div>
   {% endif %}
 </div>
@@ -180,7 +182,7 @@
       "content": "t:sections.hero-banner.settings.text_settings.content"
     },
     {
-      "type": "text",
+      "type": "richtext",
       "id": "title",
       "label": "t:sections.hero-banner.settings.title.label"
     },
