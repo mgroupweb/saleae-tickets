@@ -28,11 +28,11 @@
     %}
 
     <style>
-      .rich-text__block-{{ forloop.index }} {
+      .rich-text__block-{{ section.id }}-{{ forloop.index }} {
         background-color: {{ background_color }};
       }
 
-      .rich-text__block-{{ forloop.index }} .rich-text__block--content {
+      .rich-text__block-{{ section.id }}-{{ forloop.index }} .rich-text__block--content {
         padding-top: {{ padding_top }}px;
         padding-bottom: {{ padding_bottom }}px;
 
@@ -43,7 +43,7 @@
 
     </style>
 
-    <div class="rich-text__block rich-text__block-{{ forloop.index }}">
+    <div class="rich-text__block rich-text__block-{{ section.id }}-{{ forloop.index }}">
       <div class="rich-text__block--content">
         {% if title != blank %}
           {{ title }}
