@@ -2,102 +2,107 @@
 {{ 'section-footer.css' | asset_url | stylesheet_tag }}
 
 {%- style -%}
+  .section-{{ section.id }}-padding {
+        padding-top: {{ section.settings.padding_top }}px;
+        padding-bottom: {{ section.settings.padding_bottom }}px;
+      }
 
-.section-{{ section.id }}-padding {
-      padding-top: {{ section.settings.padding_top }}px;
-      padding-bottom: {{ section.settings.padding_bottom }}px;
+    @media screen and (max-width: 767px) {
+
+      .section-{{ section.id }}-padding {
+        padding-top: {{ section.settings.padding_top-mobile }}px;
+        padding-bottom: {{ section.settings.padding_bottom-mobile }}px;
+      }
+
     }
-
-  @media screen and (max-width: 767px) {
-
-    .section-{{ section.id }}-padding {
-      padding-top: {{ section.settings.padding_top-mobile }}px;
-      padding-bottom: {{ section.settings.padding_bottom-mobile }}px;
-    }
-
-  }
-  .footer {
-    font-family: var(--gentona-font);
-  }
 {%- endstyle -%}
 
-<footer 
+<footer
   class="footer section-{{ section.id }}-padding"
-  style='background-color: {{ section.settings.background_color }};'
+  style="background-color: {{ section.settings.background_color }};"
 >
   <div class="footer__wrapper">
-  
-  {% comment %} Logo and social block {% endcomment %}
+    {% comment %} Logo and social block {% endcomment %}
     <div class="footer__brand-info">
-      
       {% comment %} Logo {% endcomment %}
-        {%- if section.settings.footer_logo != blank -%}
-          <div class="footer-logo">
-            {{
-              section.settings.footer_logo
-              | image_url: width: 1100
-              | image_tag:
-                loading: 'lazy',
-                height: section.settings.footer_logo.height,
-                width: section.settings.footer_logo.width
-            }}
-          </div>
+      {%- if section.settings.footer_logo != blank -%}
+        <div class="footer-logo">
+          {{
+            section.settings.footer_logo
+            | image_url: width: 1100
+            | image_tag:
+              loading: 'lazy',
+              height: section.settings.footer_logo.height,
+              width: section.settings.footer_logo.width
+          }}
+        </div>
+      {%- endif -%}
+
+      {% comment %} Social media {% endcomment %}
+      <div class="footer-social-block">
+        {%- if section.settings['social-title'] != blank -%}
+          <p>{{ section.settings['social-title'] }}</p>
         {%- endif -%}
-  
-        {% comment %} Social media {% endcomment %}
-        <div class='footer-social-block'>
-          {% if section.settings.social-title != blank %}
-            <p>{{ section.settings.social-title }}</p>
-          {% endif %}
-          {% for block in section.blocks %}
+
+        {%- if section.blocks.size > 0 -%}
+          {%- for block in section.blocks -%}
+
             {% style %}
-              .footer-social-block__icon:hover {
+              .footer-social-block__icon--{{ block.id }}:hover {
                 border: 1px solid {{ block.settings.icon-hover }};
                 background: {{ block.settings.icon-hover }};
               }
             {% endstyle %}
-              {% if block.settings.social_icon != blank %}
-                <a class='footer-social-block__icon' href='{{ block.settings.social_link }}'
-                  aria-label="{{ block.settings.title }}"
-                >
-                  {{ block.settings.social_icon }}
-                </a>
-              {% endif %}
-          {% endfor %}
-        </div>
   
+            {%- if block.settings.social_icon != blank -%}
+              <a
+                class="footer-social-block__icon footer-social-block__icon--{{ block.id }}"
+                href="{{ block.settings.social_link }}"
+                aria-label="{{ block.settings.title }}"
+              >
+                {{ block.settings.social_icon }}
+              </a>
+            {%- endif -%}
+          {%- endfor -%}
+        {%- endif -%}
+      
+      </div>
     </div>
-  
+
     {% comment %} Navigation {% endcomment %}
-  
-    <div class="footer-navigation">
-      {% for block in section.blocks %}
-        {% if block.type == "link_lists" %}
+    {%- if section.blocks.size > 0 -%}
+      <div class="footer-navigation">
+        {%- for block in section.blocks -%}
+          {%- if block.type == 'link_lists' -%}
+            <div class="footer-navigation__links">
+              {%- if block.settings.title != blank -%}
+                <h2 class="footer-navigation__link-title">
+                  {{ block.settings.title }}
+                </h2>
+              {%- endif -%}
 
-        <div class='footer-navigation__links'>
-          <div class="footer-navigation__link-title">
-            {{ block.settings.title }}
-          </div> 
-            <ul class='footer-navigation__link'>
-              {% for link in block.settings.footer_menu.links -%}
-                      <li>
-                        <a href='{{ link.url }}'>
-                          {{ link.title }}
-                        </a>
-                      </li>
-              {%- endfor %}
-              <li class="footer-navigation__spli-link">
-                {{ block.settings.split_text }}
-              </li>
-            </ul>
-        </div>
-
-        {% endif %}
-      {% endfor %}
-    </div>
+              {%- if block.settings.footer_menu != blank -%}
+                <ul class="footer-navigation__link">
+                  {%- for link in block.settings.footer_menu.links -%}
+                    <li>
+                      <a href="{{ link.url }}">
+                        {{ link.title }}
+                      </a>
+                    </li>
+                  {%- endfor %}
+                  {%- if block.settings.split_text != blank -%}
+                    <li class="footer-navigation__split-link">
+                      {{ block.settings.split_text }}
+                    </li>
+                  {%- endif -%}
+                </ul>
+              {%- endif -%}
+            </div>
+          {%- endif -%}
+        {%- endfor -%}
+      </div>
+    {%- endif -%}
   </div>
-
-
 </footer>
 
 {% schema %}
@@ -105,35 +110,35 @@
   "name": "t:sections.footer.name",
   "blocks": [
     {
-			"type": "social_media",
-			"name": "Social media",
-			"settings": [
+      "type": "social_media",
+      "name": "Social media",
+      "settings": [
         {
           "type": "text",
           "id": "title",
           "label": "Title"
         },
-				{
-					"type": "textarea",
-					"id": "social_icon",
-					"label": "Social icon (SVG Code)"
-				},
+        {
+          "type": "textarea",
+          "id": "social_icon",
+          "label": "Social icon (SVG Code)"
+        },
         {
           "type": "color",
           "id": "icon-hover",
           "label": "Hover"
         },
-				{
-					"type": "url",
-					"id": "social_link",
-					"label": "URL"
-				}
-			]
-		},
+        {
+          "type": "url",
+          "id": "social_link",
+          "label": "URL"
+        }
+      ]
+    },
     {
-			"type": "link_lists",
-			"name": "Menu",
-			"settings": [
+      "type": "link_lists",
+      "name": "Menu",
+      "settings": [
         {
           "type": "text",
           "id": "title",
@@ -149,9 +154,8 @@
           "id": "split_text",
           "label": "Split links"
         }
-			]
-		}
-    
+      ]
+    }
   ],
   "settings": [
     {
@@ -199,10 +203,10 @@
       "default": 36
     },
     {
-			"type": "color",
-			"id": "background_color",
-			"label": "Background color"
-		},
+      "type": "color",
+      "id": "background_color",
+      "label": "Background color"
+    },
     {
       "type": "header",
       "content": "Footer logo"
@@ -214,16 +218,12 @@
     },
     {
       "type": "header",
-      "content": "Footer navigation"
-    },
-    {
-      "type": "header",
-      "content": "Social block"
+      "content": "Social media"
     },
     {
       "type": "text",
       "id": "social-title",
-      "label": "Social block title"
+      "label": "Title"
     }
   ]
 }

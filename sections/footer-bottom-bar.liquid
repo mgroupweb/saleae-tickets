@@ -21,29 +21,34 @@
   }
 {%- endstyle -%}
 
+<script src="{{ 'footer-bottom-bar.js' | asset_url }}" defer="defer"></script>
+
 <footer 
   class="footer-bottom-bar section-{{ section.id }}-padding"
   style='background-color: {{ section.settings.background_color }};'
 >
   <div class="footer-bottom-bar__wrapper">
   
-  
     {% comment %} Privacy links {% endcomment %}
-		<ul class='footer-pravicy-block'>
-				{% for block in section.blocks %}
-					{% if block.type == 'privacy_links' %}
-							<li class='footer-pravicy-block__links'>
-									<a
-										class='footer-pravicy-block__link'
-										href='{{ block.settings.url }}'
-									>
-										{{ block.settings.title }}
-									</a>
-							</li>
-					{% endif %}
-				{% endfor %}
+    {%- if section.blocks.size > 0 -%}
+      <ul class='footer-pravicy-block'>
+				{%- for block in section.blocks -%}
+					{%- if block.type == 'privacy_links' -%}
+            {%- if block.settings.title != blank -%}
+              <li class='footer-pravicy-block__links'>
+                <a
+                  class='footer-pravicy-block__link'
+                  href='{{ block.settings.url }}'
+                >
+                  {{ block.settings.title }}
+                </a>
+            </li>
+            {%- endif -%}
+					{%- endif -%}
+				{%- endfor -%}
 		</ul>
-		
+    {%- endif -%}
+
 		{% comment %} Copyright {% endcomment %}
 		<div class='footer-pravicy-copyright'>
 				&copy; {{ 'now' | date: '%Y' }}
@@ -74,19 +79,6 @@
 	</div>
 
 </footer>
-
-<script>
-
-const selector = document.querySelector(".main-footer__bottom-language")
-
-function addClassOnClick() {
-  selector.classList.toggle('active'); // Замініть 'yourClassName' на назву класу, який ви хочете додати
-}
-
-selector.addEventListener('click', addClassOnClick);
-
-
-</script>
 
 {% schema %}
 {

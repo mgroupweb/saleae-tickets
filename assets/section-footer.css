@@ -1,5 +1,6 @@
 .footer {
   width: 100%;
+  font-family: var(--gentona-font);
 }
 
 .footer__wrapper {
@@ -97,7 +98,7 @@
     margin-bottom: 11px;
 }
 
-.footer-navigation__spli-link {
+.footer-navigation__split-link {
   color: #add1e5;
   font-weight: 600;
 }
