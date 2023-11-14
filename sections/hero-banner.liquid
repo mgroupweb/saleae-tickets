@@ -7,14 +7,19 @@
   }
   .aspect-ratio-container-{{ section.id }} {
     {%- if section.settings.image_height == "large" -%}
-      aspect-ratio: 750/350;
+      aspect-ratio: 1440/656;
     {%- elsif section.settings.image_height == "medium"-%}
       aspect-ratio: 750/300;
     {%- elsif section.settings.image_height == "extra-large"-%}
-      aspect-ratio: 750/520;
+      aspect-ratio: 1440/960;
     {%- endif -%}
   }
-  .hero-content__title-{{ section.id }} {
+  .hero-content__title-{{ section.id }}{
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    width: 100%;
+    transform: translate(-50%, -50%);
     text-align: {{ section.settings.alignment_content_horizontal }};
 
      {% if section.settings.alignment_content_vertical == 'top' %}
@@ -31,10 +36,10 @@
   .media-container__video-mobile, .imedia-container_image-mobile{
     display: block;
   }
-  .media-container__image-wrapper {
+  .media-container__image-wrapper-{{ section.id }} {
     {% if section.settings.image_mobile != blank %} display:none; {% endif %}
   }
-  .media-container__video-wrapper {
+  .media-container__video-wrapper-{{ section.id }} {
     {% if section.settings.video_mobile != blank %} display:none; {% endif %}
   }
 
@@ -50,7 +55,7 @@
     .media-container_video-desktop, .media-container_image-desktop{
       display: block;
     }
-    .media-container__image-wrapper, .media-container__video-wrapper {
+    .media-container__image-wrapper-{{ section.id }}, .media-container__video-wrapper-{{ section.id }} {
       display: block;
     }
   }
@@ -59,7 +64,7 @@
 <div class=" section-{{ section.id }}-padding">
   {% if section.settings.image_desktop != blank %}
     <div class="hero-content">
-      <div class="hero-content__media media-container">
+      <div class="hero-content__media media-container" style="display: contents;">
         {%- if section.settings.video_desktop != blank -%}
           {%- if section.settings.video_mobile != blank -%}
             {{
@@ -72,7 +77,7 @@
                 class: 'media-container__video-mobile'
             }}
           {%- endif -%}
-          <div class="media-container__video-wrapper aspect-ratio-container-{{ section.id }}">
+          <div class="media-container__video-wrapper-{{ section.id }} aspect-ratio-container-{{ section.id }}">
             {{
               section.settings.video_desktop
               | video_tag:
@@ -87,12 +92,16 @@
           {%- if section.settings.image_mobile != blank -%}
             {% render 'image-banner', image: section.settings.image_mobile, class: 'media-container_image-mobile' %}
           {%- endif -%}
-          <div class="media-container__image-wrapper aspect-ratio-container-{{ section.id }}">
+          <div class="media-container__image-wrapper-{{ section.id }} aspect-ratio-container-{{ section.id }}">
             {% render 'image-banner', image: section.settings.image_desktop, class: 'media-container_image-desktop' %}
           </div>
         {%- endif -%}
       </div>
-      <div class="hero-content__title-{{ section.id }} hero-content__title">{{ section.settings.title }}</div>
+      <div class="hero-content__title-{{ section.id }} title-wrapper">
+        <div class="title-wrapper__content">
+          {{ section.settings.title }}
+        </div>
+      </div>
     </div>
   {% endif %}
 </div>
