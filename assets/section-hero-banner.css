@@ -1,6 +1,7 @@
 .hero-content{
     position: relative;
     display: flex;
+    justify-content: center;
 }
 .media-container_image-desktop, .media-container_video-desktop{
     width: 100%;
@@ -11,16 +12,24 @@
     width: 100%;
     height: auto;
 }
-.hero-content__title {
-    position: absolute;
-    left: 50%;
-    top: 50%;
+.title-wrapper {
+    position: absolute; 
+    max-width: 1110px; 
     width: 100%;
-    transform: translate(-50%, -50%);
+    margin: 0;
+    
+    @media screen and (max-width: 1110px) {
+        padding: 0 20px;
+    }
 }
-.hero-content__title h1 {
+.title-wrapper__content {
+    padding: 15px 0;
+}
+.title-wrapper__content * {
     margin: 0;
     font-size: 25px;
+    font-weight: 500;
+    letter-spacing: -1.06px;
     color: #fff;
     font-family: var(--gentona-font);
 
