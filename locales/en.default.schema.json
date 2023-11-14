@@ -679,6 +679,64 @@
         "name": "Custom Liquid"
       }
     },
+    "custom_map": {
+      "name": "Google Map",
+      "settings": {
+        "heading": {
+          "label": "Section title"
+        },
+        "map_general": {
+          "content": "General"
+        },
+        "map_iframe": {
+          "label": "Insert Map Iframe"
+        },
+        "divider": {
+          "label": "Divider on/off"
+        }
+      },
+      "blocks": {
+        "text": {
+          "name": "Text",
+          "settings": {
+            "title": {
+              "label": "Block title"
+            },
+            "description": {
+              "label": "Description"
+            }
+          }
+        },
+        "buttons": {
+          "name": "Buttons",
+          "settings": {
+            "button_label_1": {
+              "label": "First button label",
+              "info": "Leave the label blank to hide the button."
+            },
+            "button_link_1": {
+              "label": "First button link"
+            },
+            "button_style_secondary_1": {
+              "label": "Use outline button style"
+            },
+            "button_label_2": {
+              "label": "Second button label",
+              "info": "Leave the label blank to hide the button."
+            },
+            "button_link_2": {
+              "label": "Second button link"
+            },
+            "button_style_secondary_2": {
+              "label": "Use outline button style"
+            }
+          }
+        }
+      },
+      "presets": {
+        "name": "Google Map"
+      }
+    },
     "featured-blog": {
       "name": "Blog posts",
       "settings": {
