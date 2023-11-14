@@ -1,0 +1,164 @@
+{% comment %}theme-check-disable UndefinedObject{% endcomment %}
+{{ 'section-footer-bottom-bar.css' | asset_url | stylesheet_tag }}
+
+{%- style -%}
+
+.section-{{ section.id }}-padding {
+      padding-top: {{ section.settings.padding_top }}px;
+      padding-bottom: {{ section.settings.padding_bottom }}px;
+    }
+
+  @media screen and (max-width: 767px) {
+
+    .section-{{ section.id }}-padding {
+      padding-top: {{ section.settings.padding_top-mobile }}px;
+      padding-bottom: {{ section.settings.padding_bottom-mobile }}px;
+    }
+
+  }
+  .footer-bottom-bar {
+    font-family: var(--gentona-font);
+  }
+{%- endstyle -%}
+
+<script src="{{ 'footer-bottom-bar.js' | asset_url }}" defer="defer"></script>
+
+<footer 
+  class="footer-bottom-bar section-{{ section.id }}-padding"
+  style='background-color: {{ section.settings.background_color }};'
+>
+  <div class="footer-bottom-bar__wrapper">
+  
+    {% comment %} Privacy links {% endcomment %}
+    {%- if section.blocks.size > 0 -%}
+      <ul class='footer-pravicy-block'>
+				{%- for block in section.blocks -%}
+					{%- if block.type == 'privacy_links' -%}
+            {%- if block.settings.title != blank -%}
+              <li class='footer-pravicy-block__links'>
+                <a
+                  class='footer-pravicy-block__link'
+                  href='{{ block.settings.url }}'
+                >
+                  {{ block.settings.title }}
+                </a>
+            </li>
+            {%- endif -%}
+					{%- endif -%}
+				{%- endfor -%}
+		</ul>
+    {%- endif -%}
+
+		{% comment %} Copyright {% endcomment %}
+		<div class='footer-pravicy-copyright'>
+				&copy; {{ 'now' | date: '%Y' }}
+				Saleae, Inc
+		</div>
+
+		{% comment %} Language selector {% endcomment %}
+		<div class="main-footer__bottom-language">
+			<div class="main-footer__bottom-language-title">English</div>
+			<div class="main-footer__bottom-language-window">
+					<div class="main-footer__bottom-language-window-title">Choose your language:</div>
+					<div class="main-footer__bottom-language-window-list">
+							<div>
+									<a class="active" href="https://www.saleae.com/about/" data-lang="en"><img src="//cdn.shopify.com/static/images/flags/gb.svg">English</a>
+									<a class="" href="https://www.saleae.com/de/about/" data-lang="de"><img src="//cdn.shopify.com/static/images/flags/de.svg">Deutsch</a>
+									<a class="" href="https://www.saleae.com/fr/about/" data-lang="fr"><img src="//cdn.shopify.com/static/images/flags/fr.svg">Français</a>
+									<a class="" href="https://www.saleae.com/es/about/" data-lang="es"><img src="//cdn.shopify.com/static/images/flags/es.svg">Español</a>
+									<a class="" href="https://www.saleae.com/pt/about/" data-lang="pt"><img src="//cdn.shopify.com/static/images/flags/pt.svg">Português</a>
+							</div>
+							<div>
+									<a class="" href="https://www.saleae.com/it/about/" data-lang="it"><img src="//cdn.shopify.com/static/images/flags/it.svg">Italiano</a>
+									<a class="" href="https://www.saleae.com/ja/about/" data-lang="ja"><img src="//cdn.shopify.com/static/images/flags/jp.svg">日本語</a>
+									<a class="" href="https://www.saleae.com/zh/about/" data-lang="zh"><img src="//cdn.shopify.com/static/images/flags/cn.svg">中文(简体)</a>
+									<a class="" href="https://www.saleae.com/zh-tw/about/" data-lang="zh-tw"><img src="//cdn.shopify.com/static/images/flags/cn.svg">中文(繁體)</a>
+							</div>
+					</div>
+			</div>
+	</div>
+
+</footer>
+
+{% schema %}
+{
+  "name": "Footer bottom bar",
+	"enabled_on": {
+		"groups": ["footer"]
+	},
+  "blocks": [
+    {
+			"type": "privacy_links",
+			"name": "Privacy Link",
+			"settings": [
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title"
+        },
+				{
+					"type": "url",
+					"id": "url",
+					"label": "URL"
+				}
+			]
+		}
+  ],
+  "settings": [
+    {
+      "type": "header",
+      "content": "Section settings"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 200,
+      "step": 2,
+      "unit": "px",
+      "label": "t:sections.all.padding.padding_top",
+      "default": 36
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 200,
+      "step": 2,
+      "unit": "px",
+      "label": "t:sections.all.padding.padding_bottom",
+      "default": 36
+    },
+    {
+      "type": "range",
+      "id": "padding_top-mobile",
+      "min": 0,
+      "max": 200,
+      "step": 2,
+      "unit": "px",
+      "label": "Padding top (mobile)",
+      "default": 36
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom-mobile",
+      "min": 0,
+      "max": 200,
+      "step": 2,
+      "unit": "px",
+      "label": "Padding bottom (mobile)",
+      "default": 36
+    },
+    {
+			"type": "color",
+			"id": "background_color",
+			"label": "Background color"
+		}
+  ],
+	"presets": [
+    {
+      "name": "Footer bottom bar"
+    }
+  ]
+}
+{% endschema %}
