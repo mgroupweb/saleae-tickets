@@ -4,18 +4,6 @@
   .section-{{ section.id }}-padding {
     padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
     padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
-
-  }
-
-  .section-{{ section.id }}-padding::after {
-    {% if section.settings.divider %}
-        content: "";
-        background: #959595;
-        height: 1px;
-        width: 70%;
-        margin: 90px auto;
-        display: block;
-    {%- endif -%}
   }
 
   @media screen and (min-width: 750px) {
@@ -24,7 +12,18 @@
       padding-bottom: {{ section.settings.padding_bottom }}px;
     }
   }
-{%- endstyle -%}
+
+    {% if section.settings.divider %}
+      .store-locator::after {
+        content: "";
+        background: #959595;
+        height: 1px;
+        width: 70%;
+        margin: 90px auto;
+        display: block;
+      }
+    {%- endif -%}
+  {%- endstyle -%}
 
 
 <div class="store-locator section-{{ section.id }}-padding">
@@ -45,7 +44,7 @@
         </div>
       {% endfor %}
     </div>
-  <div> 
+  </div>
 </div>
 
 
