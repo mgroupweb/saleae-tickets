@@ -1,7 +1,8 @@
-.rich-text {
-  padding: 0 15px;
-  max-width: 880px;
-  margin: 0 auto;
+.rich-text-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
 
 .rich-text__block {
@@ -10,20 +11,28 @@
   align-items: center;
 }
 
+.rich-text__block--content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  max-width: 880px;
+  padding: 0 15px;
+}
+
 .rich-text__block h1 {
   margin: 0 0 28px;
   text-align: center;
 }
 
 .rich-text__block h2 {
-  margin: 0 0 22px;
+  margin: 0 0 35px;
   text-align: center;
   font-weight: 500;
   letter-spacing: -0.02em;
 }
 
 .rich-text__block h3 {
-  margin: 0 0 16px;
+  margin: 0 0 22px;
   text-align: center;
   line-height: 1.27;
   letter-spacing: 0.02em;
@@ -32,22 +41,26 @@
 .rich-text__block p {
   margin: 0;
   text-align: center;
-  font-size: 25px;
+  font-size: 18px;
   font-weight: 400;
   line-height: 1.27;
   letter-spacing: 0.02em;
 }
 
-@media screen and (min-width: 769px) {
+@media screen and (min-width: 992px) {
   .rich-text__block h1 {
     margin: 0 0 55px;
   }
 
   .rich-text__block h2 {
-    margin: 0 0 45px;
+    margin: 0 0 36px;
   }
 
   .rich-text__block h3 {
-    margin: 0 0 35px;
+    margin: 0 0 45px;
+  }
+
+  .rich-text__block p {
+    font-size: 25px;
   }
 }
