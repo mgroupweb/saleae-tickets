@@ -688,7 +688,12 @@
         "map_general": {
           "content": "General"
         },
-        "map_iframe": "Insert Map Iframe"
+        "map_iframe": {
+          "label": "Insert Map Iframe"
+        },
+        "divider": {
+          "label": "Divider on/off"
+        }
       },
       "blocks": {
         "text": {

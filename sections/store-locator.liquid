@@ -4,6 +4,18 @@
   .section-{{ section.id }}-padding {
     padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
     padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
+
+  }
+
+  .section-{{ section.id }}-padding::after {
+    {% if section.settings.divider %}
+        content: "";
+        background: #959595;
+        height: 1px;
+        width: 70%;
+        margin: 90px auto;
+        display: block;
+    {%- endif -%}
   }
 
   @media screen and (min-width: 750px) {
@@ -15,29 +27,26 @@
 {%- endstyle -%}
 
 
-  <div class="section-{{ section.id }}-padding">
-    
-      <div class="about-map__wrapper">
-        <h2 class="location-wrapper-title">
-            {{ section.settings.heading }}
-        </h2>
-        <div class="location-wrapper__content">
-            <div class="block-content">
-                {{ section.settings.block_content }}
-            </div>
+<div class="store-locator section-{{ section.id }}-padding">
+  <div class="location-wrapper">
+    <h2 class="location-wrapper__title">
+        {{ section.settings.heading }}
+    </h2>
+    <div class="location-wrapper__content map">
+      <div class="map__content">
+        {{ section.settings.block_content }}
+      </div>
+    </div>
+    <div class="location-wrapper__description description">
+      {% for block in section.blocks %}
+        <div class="description__block">
+          <h2 class="description__block-title">{{ block.settings.title }}</h2>
+          {{ block.settings.description }}
         </div>
-       
-        <div class="map-description">
-          {% for block in section.blocks %}
-            <div class="map-desc-locate">
-                <h2 class="map-desc-locate__title">{{ block.settings.title }}</h2>
-                {{ block.settings.description }}
-            </div>
-          {% endfor %}
-        </div>
-      <div>
-      
-  </div>
+      {% endfor %}
+    </div>
+  <div> 
+</div>
 
 
 {% schema %}
@@ -80,7 +89,13 @@
       {
         "type": "html",
         "id": "block_content",
-        "label": "t:sections.custom_map.settings.map_iframe"
+        "label": "t:sections.custom_map.settings.map_iframe.label"
+      },
+      {
+        "type": "checkbox",
+        "id": "divider",
+        "label": "t:sections.custom_map.settings.divider.label",
+        "default": false
       }
 	],
     "blocks": [
