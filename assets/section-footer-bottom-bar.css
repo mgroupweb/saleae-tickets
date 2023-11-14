@@ -33,6 +33,11 @@
 	font-weight: 300;
 }
 
+.footer-pravicy-block a:hover {
+	color: #ffffff;
+	text-decoration: underline;
+}
+
 .footer-pravicy-copyright {
 	color: #ffffff;
 	font-size: 14px;
