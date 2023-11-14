@@ -5,7 +5,7 @@
     padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
     padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
   }
-  .media-container-{{ section.id }} {
+  .aspect-ratio-container-{{ section.id }} {
     {%- if section.settings.image_height == "large" -%}
       aspect-ratio: 750/350;
     {%- elsif section.settings.image_height == "medium"-%}
@@ -15,11 +15,6 @@
     {%- endif -%}
   }
   .hero-content__title-{{ section.id }} {
-    position: absolute;
-    left: 50%;
-    top: 50%;
-    width: 100%;
-    transform: translate(-50%, -50%);
     text-align: {{ section.settings.alignment_content_horizontal }};
 
      {% if section.settings.alignment_content_vertical == 'top' %}
@@ -30,6 +25,7 @@
        top: unset;
        bottom: 0;
        transform: translateX(-50%);
+
      {% endif %}
   }
   .media-container__video-mobile, .imedia-container_image-mobile{
@@ -42,11 +38,12 @@
     {% if section.settings.video_mobile != blank %} display:none; {% endif %}
   }
 
-  @media screen and (min-width: 750px) {
+  @media screen and (min-width: 768px) {
     .section-{{ section.id }}-padding {
       padding-top: {{ section.settings.padding_top }}px;
       padding-bottom: {{ section.settings.padding_bottom }}px;
     }
+
     .media-container__video-mobile, .media-container_image-mobile{
       display: none
     }
@@ -62,7 +59,7 @@
 <div class=" section-{{ section.id }}-padding">
   {% if section.settings.image_desktop != blank %}
     <div class="hero-content">
-      <div class="hero-content__media media-container-{{ section.id }} media-container">
+      <div class="hero-content__media media-container">
         {%- if section.settings.video_desktop != blank -%}
           {%- if section.settings.video_mobile != blank -%}
             {{
@@ -75,7 +72,7 @@
                 class: 'media-container__video-mobile'
             }}
           {%- endif -%}
-          <div class="media-container__video-wrapper">
+          <div class="media-container__video-wrapper aspect-ratio-container-{{ section.id }}">
             {{
               section.settings.video_desktop
               | video_tag:
@@ -86,19 +83,16 @@
                 class: 'media-container_video-desktop'
             }}
           </div>
-
         {%- else -%}
           {%- if section.settings.image_mobile != blank -%}
             {% render 'image-banner', image: section.settings.image_mobile, class: 'media-container_image-mobile' %}
           {%- endif -%}
-          <div class="media-container__image-wrapper">
+          <div class="media-container__image-wrapper aspect-ratio-container-{{ section.id }}">
             {% render 'image-banner', image: section.settings.image_desktop, class: 'media-container_image-desktop' %}
           </div>
         {%- endif -%}
       </div>
       <div class="hero-content__title-{{ section.id }} hero-content__title">{{ section.settings.title }}</div>
-
-      {% comment %} <h1 class="hero-content__title-{{ section.id }} hero-content__title">{{ section.settings.title }}</h1> {% endcomment %}
     </div>
   {% endif %}
 </div>
