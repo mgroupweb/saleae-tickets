@@ -2790,6 +2790,14 @@
         "name": "Page"
       }
     },
+    "our_team": {
+      "name": "Our team",
+      "title": "Title",
+      "description": "Description",
+      "blocks": {
+        "name": "Team member"
+      }
+    },
     "quick-order-list": {
       "name": "Quick order list",
       "settings": {
