@@ -10,6 +10,7 @@
   font-weight: 500;
   margin: 0 0 79px;
   font-size: 37px;
+  letter-spacing: normal;
 }
 
 @media screen and (max-width: 767px) {
@@ -86,6 +87,7 @@
   font-size: 19px;
   font-weight: 500;
   margin: 0 0 12px;
+  line-height: 1.15em;
 }
 
 .our-team__grid--card p {
