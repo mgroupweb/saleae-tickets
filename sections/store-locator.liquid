@@ -4,9 +4,7 @@
   .section-{{ section.id }}-padding {
     padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
     padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
-
   }
-
 
   @media screen and (min-width: 750px) {
     .section-{{ section.id }}-padding {
@@ -15,17 +13,17 @@
     }
   }
 
-  .location-wrapper::after {
     {% if section.settings.divider %}
+      .store-locator::after {
         content: "";
         background: #959595;
         height: 1px;
         width: 70%;
         margin: 90px auto;
         display: block;
+      }
     {%- endif -%}
-  }
-{%- endstyle -%}
+  {%- endstyle -%}
 
 <div class="store-locator section-{{ section.id }}-padding">
   <div class="location-wrapper">
