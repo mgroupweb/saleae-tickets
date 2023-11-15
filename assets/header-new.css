@@ -83,6 +83,10 @@
 	transition: all 0.2s ease-in-out;
 }
 
+.header-new-navigation__link a:hover {
+	color: #1c1c25;
+}
+
 .cart-count-bubble {
 	height: 25px;
 	text-align: center;

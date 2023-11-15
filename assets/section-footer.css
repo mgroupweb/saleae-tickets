@@ -36,6 +36,7 @@
   margin: 0;
   font-size: 14px;
   font-weight: 300;
+  line-height: 1.3;
   letter-spacing: 0.05em;
   color: #fff;
 }
@@ -91,16 +92,25 @@
 
 .footer-navigation__link-title {
     font-size: 16px;
-    font-weight: 500;
+    font-weight: 600;
     padding: 10px;
     line-height: 1.1;
+    letter-spacing: normal;
     color: #fff;
-    margin-bottom: 11px;
+    margin: 0 0 11px 0;
 }
 
 .footer-navigation__split-link {
   color: #add1e5;
   font-weight: 600;
+}
+
+.footer-navigation__split-link a {
+  padding: 10px 4px 10px 4px !important;
+}
+
+.footer-navigation__split-link a:first-child {
+  padding: 10px 4px 10px 10px !important;
 }
 
 @media screen and (max-width: 767px) {
@@ -132,8 +142,8 @@
   }
 
   .footer-logo {
-    line-height: 1;
     margin-bottom: 20px;
+    line-height: 0;
   }
 
   .footer-logo img {
