@@ -17,7 +17,10 @@
   align-items: center;
   max-width: 880px;
   padding: 0 15px;
+  position: relative;
+
 }
+
 
 .rich-text__block h1 {
   margin: 0 0 28px;
