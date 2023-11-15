@@ -2,6 +2,9 @@
     position: relative;
     display: flex;
     justify-content: center;
+    @media screen and (max-width: 768px) {
+        margin-bottom: -8px;
+    }   
 }
 .media-container_image-desktop, .media-container_video-desktop{
     width: 100%;
@@ -29,7 +32,7 @@
     margin: 0;
     font-size: 25px;
     font-weight: 500;
-    letter-spacing: -1.06px;
+    letter-spacing: -0.02em;
     color: #fff;
     font-family: var(--gentona-font);
 

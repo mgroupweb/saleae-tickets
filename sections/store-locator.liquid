@@ -2,28 +2,30 @@
 
 {%- style -%}
   .section-{{ section.id }}-padding {
-    padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
-    padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
+    padding-top: {{ section.settings.padding_top }}px;
+    padding-bottom: {{ section.settings.padding_bottom }}px;
+  }
+  .location-wrapper::after {
+    {% if section.settings.divider %}
+      content: "";
+      background: #959595;
+      height: 1px;
+      width: 70%;
+      margin: 90px auto 0 auto;
+      display: block;
+    {%- endif -%}
   }
 
-  @media screen and (min-width: 750px) {
+  @media screen and (max-width: 768px) {
     .section-{{ section.id }}-padding {
-      padding-top: {{ section.settings.padding_top }}px;
-      padding-bottom: {{ section.settings.padding_bottom }}px;
+      padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
+      padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
+    }
+    .location-wrapper::after {
+      margin: 0 auto;
     }
   }
-
-    {% if section.settings.divider %}
-      .store-locator::after {
-        content: "";
-        background: #959595;
-        height: 1px;
-        width: 70%;
-        margin: 90px auto;
-        display: block;
-      }
-    {%- endif -%}
-  {%- endstyle -%}
+{%- endstyle -%}
 
 <div class="store-locator section-{{ section.id }}-padding">
   <div class="location-wrapper">
