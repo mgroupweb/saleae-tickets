@@ -14,6 +14,7 @@
       aspect-ratio: 1440/960;
     {%- endif -%}
   }
+
   .hero-content__title-{{ section.id }}{
     position: absolute;
     left: 50%;
@@ -21,101 +22,84 @@
     width: 100%;
     transform: translate(-50%, -50%);
     text-align: {{ section.settings.alignment_content_horizontal }};
-
-     {% if section.settings.alignment_content_vertical == 'top' %}
-       top: 0;
-       transform: translateX(-50%);
-
-     {% elsif section.settings.alignment_content_vertical == 'bottom' %}
-       top: unset;
-       bottom: 0;
-       transform: translateX(-50%);
-
-     {% endif %}
+    {% if section.settings.alignment_content_vertical == 'top' %}
+      top: 0;
+      transform: translateX(-50%);
+    {% elsif section.settings.alignment_content_vertical == 'bottom' %}
+      top: unset;
+      bottom: 0;
+      transform: translateX(-50%);
+    {% endif %}
   }
-  .media-container__video-mobile, .imedia-container_image-mobile{
-    display: block;
-  }
-  .media-container__image-wrapper-{{ section.id }} {
-    {% if section.settings.image_mobile != blank %} display:none; {% endif %}
-  }
-  .media-container__video-wrapper-{{ section.id }} {
-    {% if section.settings.video_mobile != blank %} display:none; {% endif %}
-  }
-
   @media screen and (min-width: 768px) {
     .section-{{ section.id }}-padding {
       padding-top: {{ section.settings.padding_top }}px;
       padding-bottom: {{ section.settings.padding_bottom }}px;
     }
-
-    .media-container__video-mobile, .media-container_image-mobile{
-      display: none
-    }
-    .media-container_video-desktop, .media-container_image-desktop{
-      display: block;
-    }
-    .media-container__image-wrapper-{{ section.id }}, .media-container__video-wrapper-{{ section.id }} {
-      display: block;
-    }
   }
 {%- endstyle -%}
 
-{% if section.settings.video_desktop == blank
-  and section.settings.video_mobile == blank
-  and section.settings.image_mobile == blank
-  and section.settings.image_desktop == blank
-%}
-  {% assign blanked = false %}
-{% else %}
-  {% assign blanked = true %}
-{% endif %}
-{% if blanked %}
-  <div class=" section-{{ section.id }}-padding">
-    <div class="hero-content">
-      {% if section.settings.image_desktop != blank or section.settings.video_desktop != blank %}
-        <div class="hero-content__media media-container" style="display: contents;">
-          {%- if section.settings.video_desktop != blank -%}
-            {%- if section.settings.video_mobile != blank -%}
-              {{
-                section.settings.video_mobile
-                | video_tag:
-                  autoplay: true,
-                  loop: true,
-                  muted: true,
-                  controls: false,
-                  class: 'media-container__video-mobile'
-              }}
-            {%- endif -%}
-            <div class="media-container__video-wrapper-{{ section.id }} aspect-ratio-container-{{ section.id }}">
-              {{
-                section.settings.video_desktop
-                | video_tag:
-                  autoplay: true,
-                  loop: true,
-                  muted: true,
-                  controls: false,
-                  class: 'media-container_video-desktop'
-              }}
-            </div>
-          {%- else -%}
-            {%- if section.settings.image_mobile != blank -%}
-              {% render 'image-banner', image: section.settings.image_mobile, class: 'media-container_image-mobile' %}
-            {%- endif -%}
-            <div class="media-container__image-wrapper-{{ section.id }} aspect-ratio-container-{{ section.id }}">
-              {% render 'image-banner', image: section.settings.image_desktop, class: 'media-container_image-desktop' %}
-            </div>
-          {%- endif -%}
-        </div>
-        <div class="hero-content__title-{{ section.id }} title-wrapper">
-          <div class="title-wrapper__content">
-            {{ section.settings.title }}
-          </div>
-        </div>
-      {% endif %}
+{%- liquid
+  assign image_mobile = section.settings.image_mobile
+  assign video_mobile = section.settings.video_mobile
+
+  assign image_desktop = section.settings.image_desktop
+  assign video_desktop = section.settings.video_desktop
+
+  if video_mobile == blank and image_mobile == blank and video_desktop != blank
+    assign video_mobile = video_desktop
+  endif
+
+  if image_mobile == blank and image_desktop != blank
+    assign image_mobile = image_desktop
+  endif
+-%}
+
+{%- capture mobile_placeholder -%}
+  <div class="media-container__placeholder">
+    {{ 'collection-1' | placeholder_svg_tag }}
+  </div>
+{%- endcapture -%}
+
+{%- capture desktop_placeholder -%}
+  <div class="media-container__placeholder">
+    {{ 'lifestyle-2' | placeholder_svg_tag }}
+  </div>
+{%- endcapture -%}
+
+<div class="section-{{ section.id }}-padding">
+  <div class="hero-content">
+    <div class="hero-content__media media-container" style="display: contents;">
+      <div class="media-container__mobile-container">
+        {%- liquid
+          if video_mobile != blank
+            echo video_mobile | video_tag: autoplay: true, loop: true, muted: true, controls: false, class: 'media-container__video-mobile'
+          elsif image_mobile != blank
+            render 'image-banner', image: image_mobile, class: 'media-container__image-mobile'
+          else
+            echo mobile_placeholder
+          endif
+        -%}
+      </div>
+      <div class="media-container__desktop-container  aspect-ratio-container-{{ section.id }}">
+        {%- liquid
+          if video_desktop != blank
+            echo video_desktop | video_tag: autoplay: true, loop: true, muted: true, controls: false, class: 'media-container__video-desktop'
+          elsif image_desktop != blank
+            render 'image-banner', image: section.settings.image_desktop, class: 'media-container__image-desktop'
+          else
+            echo desktop_placeholder
+          endif
+        -%}
+      </div>
+    </div>
+    <div class="hero-content__title-{{ section.id }} title-wrapper">
+      <div class="title-wrapper__content">
+        {{ section.settings.title }}
+      </div>
     </div>
   </div>
-{% endif %}
+</div>
 
 {% schema %}
 {
