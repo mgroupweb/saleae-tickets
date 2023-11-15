@@ -61,7 +61,7 @@
     {% comment %} Close icon {% endcomment %}
 
 		{% comment %} Header mobile navigation {% endcomment %}
-    <nav class="header-new-navigation-mobile" style="height: 0">
+    <nav class="header-new-navigation-mobile" style="height: 0; display: none;">
       <ul class="header-new-navigation__links-mobile">
         {% for link in section.settings.header_menu.links %}
           <li class="header-new-navigation__link-mobile">
@@ -89,6 +89,7 @@
     burgerBtn.classList.add("open");
     {% comment %} navigationBlock.style.padding = '20px'; {% endcomment %}
     navigationBlock.style.transition = 'height 0.3s';
+    navigationBlock.style.display = 'block';
     navigationBlock.style.height = `${navigationBlock.scrollHeight}px`;
 
     setTimeout(() => {
@@ -101,6 +102,7 @@
     isOpen = false;
     burgerBtn.classList.remove("open");
     {% comment %} navigationBlock.style.padding = '0px'; {% endcomment %}
+    navigationBlock.style.display = 'none';
     navigationBlock.style.height = `${navigationBlock.scrollHeight}px`;
     navigationBlock.style.transition = 'height 0.3s';
 
