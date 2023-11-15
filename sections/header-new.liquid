@@ -1,0 +1,143 @@
+{{ 'header-new.css' | asset_url | stylesheet_tag }}
+
+<header class="header-new">
+  <div class="header-new__wrapper">
+    {% comment %} Logo {% endcomment %}
+    {%- if section.settings.logo_svg != blank -%}
+      <a href="{{ routes.root_url | default: "#" }}" class="header-new-logo">
+        {{
+          section.settings.logo_svg
+          | image_url: width: 1100
+          | image_tag: loading: 'lazy', height: section.settings.logo_svg.height, width: section.settings.logo_svg.width
+        }}
+      </a>
+    {%- endif -%}
+
+    {% comment %} Navigation {% endcomment %}
+    {%- if section.settings.header_menu != blank -%}
+			<nav class="header-new-navigation">
+				<ul class="header-new-navigation__links">
+					{% for link in section.settings.header_menu.links %}
+						<li class="header-new-navigation__link">
+							<a href="{{ link.url | default: "#" }}">
+								{{- link.title -}}
+							</a>
+						</li>
+					{% endfor %}
+				</ul>
+			</nav>
+    {%- endif -%}
+
+		{% comment %} Header icons {% endcomment %}
+
+    {% comment %} Cart icon {% endcomment %}
+    <div class="header-new-icons">
+      <a href="{{ routes.cart_url }}" class="header-new-cart header__icon--cart" id="cart-icon-bubble">
+        {%- liquid
+          if cart == empty
+            render 'icon-cart-empty'
+          else
+            render 'icon-cart'
+          endif
+        -%}
+        {%- if cart != empty -%}
+          <div class="cart-count-bubble">
+            {%- if cart.item_count < 100 -%}
+              <span aria-hidden="true">{{ cart.item_count }}</span>
+            {%- endif -%}
+            <span class="visually-hidden">{{ 'sections.header.cart_count' | t: count: cart.item_count }}</span>
+          </div>
+        {%- endif -%}
+        <span class="header-new-cart__title">{{ 'templates.cart.cart' | t }}</span>
+      </a>
+    {% comment %} Hamburger icon {% endcomment %}
+      <div class="header-new-hamburger">
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+    </div>
+    {% comment %} Close icon {% endcomment %}
+
+		{% comment %} Header mobile navigation {% endcomment %}
+    <nav class="header-new-navigation-mobile" style="height: 0">
+      <ul class="header-new-navigation__links-mobile">
+        {% for link in section.settings.header_menu.links %}
+          <li class="header-new-navigation__link-mobile">
+            <a href="{{ link.url | default: "#" }}">
+              {{- link.title -}}
+            </a>
+          </li>
+        {% endfor %}
+    </ul>
+
+		
+
+  </div>
+</header>
+
+<script>
+
+  const burgerBtn = document.querySelector('.header-new-hamburger');
+  const navigationBlock = document.querySelector('.header-new-navigation-mobile');
+
+  let isOpen = false;
+
+  const open = () => {
+    isOpen = true;
+    burgerBtn.classList.add("open");
+    {% comment %} navigationBlock.style.padding = '20px'; {% endcomment %}
+    navigationBlock.style.transition = 'height 0.3s';
+    navigationBlock.style.height = `${navigationBlock.scrollHeight}px`;
+
+    setTimeout(() => {
+      navigationBlock.style.transition = '';
+      navigationBlock.style.height = 'auto';
+    }, 500);
+  };
+
+  const close = () => {
+    isOpen = false;
+    burgerBtn.classList.remove("open");
+    {% comment %} navigationBlock.style.padding = '0px'; {% endcomment %}
+    navigationBlock.style.height = `${navigationBlock.scrollHeight}px`;
+    navigationBlock.style.transition = 'height 0.3s';
+
+    setTimeout(() => {
+      navigationBlock.style.height = '0px';
+    }, 0);
+
+    setTimeout(() => {
+      navigationBlock.style.transition = '';
+    }, 500);
+  };
+
+  const toggle = () => (isOpen ? close() : open());
+
+  burgerBtn.addEventListener('click', toggle);
+
+</script>
+
+{% schema %}
+{
+  "name": "Header",
+  "class": "header-new",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Header settings"
+    },
+    {
+      "type": "image_picker",
+      "id": "logo_svg",
+      "label": "Logo"
+    },
+    {
+      "type": "link_list",
+      "id": "header_menu",
+      "label": "Header menu"
+    }
+  ]
+}
+{% endschema %}
