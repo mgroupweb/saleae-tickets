@@ -1,46 +1,77 @@
-.hero-content{
-    position: relative;
-    display: flex;
-    justify-content: center;
-    @media screen and (max-width: 768px) {
-        margin-bottom: -8px;
-    }   
+.hero-content {
+  position: relative;
 }
-.media-container_image-desktop, .media-container_video-desktop{
-    width: 100%;
-    object-fit: cover;
-    height: 100%;
+
+@media screen and (max-width: 768px) {
+  .hero-content {
+    margin-bottom: -8px;
+  }
 }
-.media-container_image-mobile, .media-container__video-mobile{
-    width: 100%;
-    height: auto;
+
+.media-container__mobile-container {
+  width: 100%;
 }
+
+.media-container__placeholder {
+  background-color: #cccc;
+  height: 100%;
+}
+
+.media-container__placeholder svg,
+.media-container__image-mobile,
+.media-container__video-mobile,
+.media-container__image-desktop,
+.media-container__video-desktop {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+
+@media screen and (min-width: 769px) {
+  .media-container__mobile-container {
+    display: none;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .media-container__desktop-container {
+    display: none;
+  }
+}
+
 .title-wrapper {
-    position: absolute; 
-    max-width: 1110px; 
-    width: 100%;
-    margin: 0;
-    
-    @media screen and (max-width: 1110px) {
-        padding: 0 20px;
-    }
+  position: absolute;
+  max-width: 1110px;
+  width: 100%;
+  margin: 0;
+}
+@media screen and (max-width: 1110px) {
+  .title-wrapper {
+    padding: 0 20px;
+  }
 }
 .title-wrapper__content {
-    padding: 15px 0;
+  padding: 15px 0;
 }
 .title-wrapper__content * {
-    margin: 0;
-    font-size: 25px;
-    font-weight: 500;
-    letter-spacing: -0.02em;
-    color: #fff;
-    font-family: var(--gentona-font);
-
-    @media screen and (min-width: 768px) {
-        font-size: 43px;
-    }
-    @media screen and (min-width: 1279px) {
-        font-size: 53px;
-    }
+  margin: 0;
+  font-size: 25px;
+  font-weight: 500;
+  letter-spacing: -0.02em;
+  line-height: normal;
+  color: #fff;
+  font-family: var(--gentona-font);
 }
 
+@media screen and (min-width: 769px) {
+  .title-wrapper__content * {
+    font-size: 43px;
+  }
+}
+@media screen and (min-width: 1279px) {
+  .title-wrapper__content * {
+    font-size: 53px;
+  }
+}
