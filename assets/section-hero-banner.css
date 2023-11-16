@@ -2,12 +2,6 @@
   position: relative;
 }
 
-@media screen and (max-width: 768px) {
-  .hero-content {
-    margin-bottom: -8px;
-  }
-}
-
 .media-container__mobile-container {
   width: 100%;
 }
