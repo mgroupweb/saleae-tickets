@@ -3020,42 +3020,16 @@
       "blocks_name": "Text block",
       "blocks": {
         "heading": {
-          "name": "Title",
+          "name": "Text settings",
           "settings": {
             "heading": {
               "label": "Title"
-            }
-          }
-        },
-        "font-size": {
-          "label": "Title font size"
-        },
-        "caption": {
-          "name": "Caption",
-          "settings": {
-            "text": {
-              "label": "Text"
             },
-            "text_style": {
-              "label": "Text style",
-              "options__1": {
-                "label": "Subtitle"
-              },
-              "options__2": {
-                "label": "Uppercase"
-              }
+            "font-size-desktop": {
+              "label": "Title font size for desktop"
             },
-            "caption_size": {
-              "label": "Text size",
-              "options__1": {
-                "label": "Small"
-              },
-              "options__2": {
-                "label": "Medium"
-              },
-              "options__3": {
-                "label": "Large"
-              }
+            "font-size-mobile": {
+              "label": "Title font size for mobile"
             }
           }
         },
@@ -3078,26 +3052,6 @@
             },
             "button_url": {
               "label": "Button url"
-            },
-            "button_label_1": {
-              "label": "First button label",
-              "info": "Leave the label blank to hide the button."
-            },
-            "button_link_1": {
-              "label": "First button link"
-            },
-            "button_style_secondary_1": {
-              "label": "Use outline button style"
-            },
-            "button_label_2": {
-              "label": "Second button label",
-              "info": "Leave the label blank to hide the button."
-            },
-            "button_link_2": {
-              "label": "Second button link"
-            },
-            "button_style_secondary_2": {
-              "label": "Use outline button style"
             }
           }
         },

@@ -21,7 +21,8 @@
       assign padding_bottom = block.settings.padding_bottom
       assign background_color = block.settings.background_color
       assign title = block.settings.title
-      assign font_size = block.settings.font_size
+      assign font_size_desktop = block.settings.font_size_desktop
+      assign font_size_mobile = block.settings.font_size_mobile
       assign description = block.settings.description
       assign button_text = block.settings.button_text
       assign button_link = block.settings.button_link
@@ -36,15 +37,21 @@
         padding-top: {{ padding_top }}px;
         padding-bottom: {{ padding_bottom }}px;
       }
-      .custom-text__block--content-{{ section.id }} h2 {
-          font-size: {{ font_size }}px;
+      .custom-text__title-{{ section.id }} {
+        font-size: {{ font_size_mobile }}px;
+      }
+
+      @media screen and (min-width: 992px) {
+        .custom-text__title-{{ section.id }} {
+          font-size: {{ font_size_desktop }}px;
+        }
       }
     </style>
 
     <div class="custom-text__block custom-text__block-{{ section.id }}-{{ forloop.index }}">
       <div class="custom-text__block--content-{{ section.id }} custom-text__block--content">
         {% if title != blank %}
-          {{ title }}
+          <h2 class="custom-text__title-{{ section.id }} custom-text__title">{{ title }}</h2>
         {% endif %}
         {% if description != blank %}
           {{ description }}
@@ -105,7 +112,7 @@
           "type": "range",
           "id": "padding_top",
           "min": 0,
-          "max": 100,
+          "max": 120,
           "step": 2,
           "unit": "px",
           "label": "t:sections.all.padding.padding_top",
@@ -115,7 +122,7 @@
           "type": "range",
           "id": "padding_bottom",
           "min": 0,
-          "max": 100,
+          "max": 120,
           "step": 2,
           "unit": "px",
           "label": "t:sections.all.padding.padding_bottom",
@@ -128,20 +135,34 @@
           "default": "#fff"
         },
         {
-          "type": "richtext",
+          "type": "header",
+          "content": "t:sections.custom-text.blocks.heading.name"
+        },
+        {
+          "type": "text",
           "id": "title",
-          "default": "<p>Title</p>",
+          "default": "<h2>Title</h2>",
           "label": "t:sections.custom-text.blocks.heading.settings.heading.label"
         },
         {
           "type": "range",
-          "id": "font_size",
-          "min": 14,
+          "id": "font_size_desktop",
+          "min": 20,
           "max": 50,
           "step": 1,
           "unit": "px",
-          "label": "t:sections.custom-text.blocks.font-size.label",
+          "label": "t:sections.custom-text.blocks.heading.settings.font-size-desktop.label",
           "default": 37
+        },
+        {
+          "type": "range",
+          "id": "font_size_mobile",
+          "min": 12,
+          "max": 50,
+          "step": 1,
+          "unit": "px",
+          "label": "t:sections.custom-text.blocks.heading.settings.font-size-mobile.label",
+          "default": 20
         },
         {
           "type": "richtext",
