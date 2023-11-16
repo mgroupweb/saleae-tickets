@@ -3030,6 +3030,12 @@
             },
             "font-size-mobile": {
               "label": "Title font size for mobile"
+            },
+            "margin_desktop": {
+              "label": "Margin bottom for desktop"
+            },
+            "margin_mobile": {
+              "label": "Margin bottom for mobile"
             }
           }
         },
