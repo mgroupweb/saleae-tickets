@@ -22,7 +22,7 @@
 .custom-text__title {
   text-align: center;
   font-weight: 500;
-  letter-spacing: normal;
+  letter-spacing: -0.4px;
   line-height: 36px;
   margin-top: 0;
 }
@@ -38,6 +38,9 @@
 }
 
 @media screen and (min-width: 992px) {
+  .custom-text__title {
+    letter-spacing: -0.84px;
+  }
   .custom-text__block p {
     font-size: 25px;
     padding: 0;

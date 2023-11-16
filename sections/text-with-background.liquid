@@ -17,8 +17,11 @@
 <div class="custom-text section-{{ section.id }}-padding">
   {% for block in section.blocks %}
     {% liquid
-      assign padding_top = block.settings.padding_top
-      assign padding_bottom = block.settings.padding_bottom
+      assign padding_top_desktop = block.settings.padding_top_desktop
+      assign padding_bottom_desktop = block.settings.padding_bottom_desktop
+      assign padding_top_mobile = block.settings.padding_top_mobile
+      assign padding_bottom_mobile = block.settings.padding_bottom_mobile
+
       assign background_color = block.settings.background_color
       assign title = block.settings.title
       assign font_size_desktop = block.settings.font_size_desktop
@@ -35,17 +38,22 @@
         background-color: {{ background_color }};
       }
 
-      .custom-text__block-{{ section.id }}-{{ forloop.index }} .custom-text__block--content {
-        padding-top: {{ padding_top }}px;
-        padding-bottom: {{ padding_bottom }}px;
+      .custom-text__block-{{ section.id }}-{{ forloop.index }} {
+        padding-top: {{ padding_top_desktop }}px;
+        padding-bottom: {{ padding_bottom_desktop }}px;
       }
+
       .custom-text__title-{{ section.id }} {
         font-size: {{ font_size_mobile }}px;
         margin-bottom: {{ margin_mobile }}px;
-
       }
 
       @media screen and (min-width: 992px) {
+        .custom-text__block-{{ section.id }}-{{ forloop.index }} {
+          padding-top: {{ padding_top_mobile }}px;
+          padding-bottom: {{ padding_bottom_mobile }}px;
+        }
+
         .custom-text__title-{{ section.id }} {
           font-size: {{ font_size_desktop }}px;
           margin-bottom: {{ margin_desktop }}px;
@@ -111,11 +119,11 @@
       "settings": [
         {
           "type": "header",
-          "content": "t:sections.all.padding.section_padding_heading"
+          "content": "t:sections.all.padding.padding_heading_desktop"
         },
         {
           "type": "range",
-          "id": "padding_top",
+          "id": "padding_top_mobile",
           "min": 0,
           "max": 120,
           "step": 2,
@@ -125,7 +133,31 @@
         },
         {
           "type": "range",
-          "id": "padding_bottom",
+          "id": "padding_bottom_mobile",
+          "min": 0,
+          "max": 120,
+          "step": 2,
+          "unit": "px",
+          "label": "t:sections.all.padding.padding_bottom",
+          "default": 52
+        },
+        {
+          "type": "header",
+          "content": "t:sections.all.padding.padding_heading_mobile"
+        },
+        {
+          "type": "range",
+          "id": "padding_top_desktop",
+          "min": 0,
+          "max": 120,
+          "step": 2,
+          "unit": "px",
+          "label": "t:sections.all.padding.padding_top",
+          "default": 40
+        },
+        {
+          "type": "range",
+          "id": "padding_bottom_desktop",
           "min": 0,
           "max": 120,
           "step": 2,

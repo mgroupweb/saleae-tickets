@@ -70,7 +70,7 @@
 <div class="section-{{ section.id }}-padding">
   <div class="hero-content">
     <div class="hero-content__media media-container" style="display: contents;">
-      <div class="media-container__mobile-container">
+      <div class="media-container__mobile-container aspect-ratio-container-{{ section.id }}">
         {%- liquid
           if video_mobile != blank
             echo video_mobile | video_tag: autoplay: true, loop: true, muted: true, controls: false, class: 'media-container__video-mobile'
@@ -81,7 +81,7 @@
           endif
         -%}
       </div>
-      <div class="media-container__desktop-container  aspect-ratio-container-{{ section.id }}">
+      <div class="media-container__desktop-container aspect-ratio-container-{{ section.id }}">
         {%- liquid
           if video_desktop != blank
             echo video_desktop | video_tag: autoplay: true, loop: true, muted: true, controls: false, class: 'media-container__video-desktop'
