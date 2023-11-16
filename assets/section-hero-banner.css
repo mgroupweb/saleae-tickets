@@ -27,6 +27,7 @@
   height: 100%;
   object-fit: cover;
   object-position: center;
+  aspect-ratio: inherit;
 }
 
 @media screen and (min-width: 769px) {
@@ -53,7 +54,7 @@
   }
 }
 .title-wrapper__content {
-  padding: 15px 0 20px 0;
+  padding: 15px 0 22px 0;
 }
 .title-wrapper__content * {
   margin: 0;
