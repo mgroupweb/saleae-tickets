@@ -3,6 +3,9 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  width: 100%;
+  max-width: 1140px;
+  margin: 0 auto;
 }
 
 .our-team__title {
@@ -20,59 +23,46 @@
 }
 
 .our-team__grid {
-  display: grid;
-  gap: 30px;
-  grid-template-columns: repeat(1, 1fr);
-  margin: 0;
-  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
+  margin-block-start: 0;
+  margin-block-end: 0;
+  margin-inline-start: 0;
+  margin-inline-end: 0;
+  padding-inline-start: 0;
 }
 
-@media screen and (min-width: 410px) {
+@media (max-width: 767px) {
   .our-team__grid {
-    grid-template-columns: repeat(2, 1fr);
-    padding: 0 20px;
-  }
-}
-
-@media screen and (min-width: 610px) {
-  .our-team__grid {
-    grid-template-columns: repeat(3, 1fr);
-  }
-}
-
-@media screen and (min-width: 768px) {
-  .our-team__grid {
-    grid-template-columns: repeat(4, 1fr);
-  }
-}
-
-@media screen and (min-width: 992px) {
-  .our-team__grid {
-    grid-template-columns: repeat(5, 1fr);
-  }
-}
-
-@media screen and (min-width: 1257px) {
-  .our-team__grid {
-    grid-template-columns: repeat(4, 1fr);
-    max-width: 1110px;
-    padding: unset;
+    justify-content: center;
   }
 }
 
 .our-team__grid--card {
   display: flex;
   flex-direction: column;
-  
+  width: 25%;
+  padding: 0 15px;
+  margin-bottom: 30px;
 }
 
-@media screen and (max-width: 767px) {
+@media (max-width: 1249px) {
   .our-team__grid--card {
-    max-width: 170px;
+    width: 20%;
   }
 }
-
-
+@media (max-width: 991px) {
+  .our-team__grid--card {
+    width: 25%;
+  }
+}
+@media (max-width: 767px) {
+  .our-team__grid--card {
+    width: 100%;
+    max-width: 200px;
+  }
+}
 
 .our-team__grid--card img {
   width: 100%;
@@ -85,9 +75,10 @@
 .our-team__grid--card h3 {
   text-align: center;
   font-size: 19px;
+  letter-spacing: normal;
   font-weight: 500;
   margin: 0 0 12px;
-  line-height: 1.15em;
+  line-height: 18.4px;
 }
 
 .our-team__grid--card p {
@@ -95,6 +86,7 @@
   opacity: 0.5;
   color: #1c1c25;
   font-size: 14px;
+  letter-spacing: normal;
   font-weight: 300;
   line-height: 16px;
   margin: 0;
