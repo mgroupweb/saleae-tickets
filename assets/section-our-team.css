@@ -85,9 +85,10 @@
 .our-team__grid--card h3 {
   text-align: center;
   font-size: 19px;
+  letter-spacing: normal;
   font-weight: 500;
   margin: 0 0 12px;
-  line-height: 1.15em;
+  line-height: 18.4px;
 }
 
 .our-team__grid--card p {
@@ -95,6 +96,7 @@
   opacity: 0.5;
   color: #1c1c25;
   font-size: 14px;
+  letter-spacing: normal;
   font-weight: 300;
   line-height: 16px;
   margin: 0;
